@@ -14,10 +14,7 @@ public:
     float operator/ (const Fraction&);
     void operator> (const Fraction&);
     bool operator!= (const Fraction&);
-    void display()
-    {
-        cout << "The number is: " << number;
-    }
+    void display(){cout << "The number is: " << number;}
 };
 
 float Fraction::operator+ (const Fraction& param)
@@ -58,19 +55,13 @@ float Fraction::operator/ (const Fraction& param)
 
 bool Fraction::operator!= (const Fraction& param)
 {
-    if(number != param.number)
-    {
-        return false;
-    }
+    if(number != param.number){return false;}
     else{return true;}
 }
 
 void Fraction::operator> (const Fraction& param)
 {
-    if(param.number > number)
-    {
-        cout << "The number is greater";
-    }
+    if(param.number > number){cout << "The number is greater";}
     else{cout << "The number is smaller";}
 }
 
