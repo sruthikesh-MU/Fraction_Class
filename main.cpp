@@ -5,9 +5,9 @@ using namespace std;
 class Fraction
 {
 public:
-    float number;
+    int numerator, denominator;
     Fraction(){}
-    Fraction(int num): number(num){}
+    Fraction(int n, int d): numerator(n), denominator(d){}
     float operator+ (const Fraction&);
     float operator- (const Fraction&);
     float operator* (const Fraction&);
@@ -20,48 +20,44 @@ public:
 float Fraction::operator+ (const Fraction& param)
 {
     Fraction res;
-    res.number = number+param.number;
-    return res.number;
+    res.denominator = denominator*param.denominator;
+    res.numerator = numerator*param.denominator + param.numerator*denominator;
+    return res;
 }
 
 float Fraction::operator- (const Fraction& param)
 {
     Fraction res;
-    res.number = number - param.number;
-    return res.number;
+    res.denominator = denominator*param.denominator;
+    res.numerator = numerator*param.denominator - param.numerator*denominator;
+    return res;
 }
 
 float Fraction::operator* (const Fraction& param)
 {
     Fraction res;
-    res.number = number*param.number;
-    return res.number;
+    res.numerator = numerator*param.numerator;
+    res.denominator = denominator*param.denominator;
+    return res;
 }
 
 float Fraction::operator/ (const Fraction& param)
 {
-    if (param.number != 0)
-    {
-        Fraction res;
-        res.number = number/param.number;
-        return res.number;
-    }
-    else
-    {
-        cout << "Invalid Denominator";
-        return 0;
-    }
+    Fraction res;
+    res.numerator = numerator/param.numerator;
+    res.denominator = denominator/param.denominator;
+    return res;
 }
 
 bool Fraction::operator!= (const Fraction& param)
 {
-    if(number != param.number){return false;}
+    if(numerator/denominator != param.numerator/param.denominator){return false;}
     else{return true;}
 }
 
 void Fraction::operator> (const Fraction& param)
 {
-    if(param.number > number){cout << "The number is greater";}
+    if(numerator/denominator > param.numerator/param.denominator){cout << "The number is greater";}
     else{cout << "The number is smaller";}
 }
 
