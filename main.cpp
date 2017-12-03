@@ -14,7 +14,7 @@ public:
     float operator/ (const Fraction&);
     void operator> (const Fraction&);
     bool operator!= (const Fraction&);
-    void display(){cout << "The number is: " << number;}
+    void display(){cout << "The number is: " << numerator/denominator;}
 };
 
 float Fraction::operator+ (const Fraction& param)
@@ -44,8 +44,8 @@ float Fraction::operator* (const Fraction& param)
 float Fraction::operator/ (const Fraction& param)
 {
     Fraction res;
-    res.numerator = numerator/param.numerator;
-    res.denominator = denominator/param.denominator;
+    res.numerator = numerator*param.denominator;
+    res.denominator = denominator*param.numerator;
     return res;
 }
 
