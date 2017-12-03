@@ -8,42 +8,58 @@ public:
     int numerator, denominator;
     Fraction(){}
     Fraction(int n, int d): numerator(n), denominator(d){}
-    float operator+ (const Fraction&);
-    float operator- (const Fraction&);
-    float operator* (const Fraction&);
-    float operator/ (const Fraction&);
+    Fraction operator+ (const Fraction&);
+    Fraction operator- (const Fraction&);
+    Fraction operator* (const Fraction&);
+    Fraction operator/ (const Fraction&);
     void operator> (const Fraction&);
     bool operator!= (const Fraction&);
     void display(){cout << "The number is: " << numerator/denominator;}
 };
 
-float Fraction::operator+ (const Fraction& param)
+Fraction Fraction::operator+ (const Fraction& param)
 {
     Fraction res;
+    if(denominator == 0 || param.denominator == 0)
+    {
+        throw invalid_argument("denominator is 0");
+    }
     res.denominator = denominator*param.denominator;
     res.numerator = numerator*param.denominator + param.numerator*denominator;
     return res;
 }
 
-float Fraction::operator- (const Fraction& param)
+Fraction Fraction::operator- (const Fraction& param)
 {
     Fraction res;
+    if(denominator == 0 || param.denominator == 0)
+    {
+        throw invalid_argument("denominator is 0");
+    }
     res.denominator = denominator*param.denominator;
     res.numerator = numerator*param.denominator - param.numerator*denominator;
     return res;
 }
 
-float Fraction::operator* (const Fraction& param)
+Fraction Fraction::operator* (const Fraction& param)
 {
     Fraction res;
+    if(denominator == 0 || param.denominator == 0)
+    {
+        throw invalid_argument("denominator is 0");
+    }
     res.numerator = numerator*param.numerator;
     res.denominator = denominator*param.denominator;
     return res;
 }
 
-float Fraction::operator/ (const Fraction& param)
+Fraction Fraction::operator/ (const Fraction& param)
 {
     Fraction res;
+    if(denominator == 0 || param.denominator == 0)
+    {
+        throw invalid_argument("denominator is 0");
+    }
     res.numerator = numerator*param.denominator;
     res.denominator = denominator*param.numerator;
     return res;
@@ -51,14 +67,22 @@ float Fraction::operator/ (const Fraction& param)
 
 bool Fraction::operator!= (const Fraction& param)
 {
-    if(numerator/denominator != param.numerator/param.denominator){return false;}
-    else{return true;}
+    if(denominator == 0 || param.denominator == 0)
+    {
+        throw invalid_argument("denominator is 0");
+    }
+    if(numerator*param.denominator != param.numerator*denominator){return true;}
+    else{return false;}
 }
 
 void Fraction::operator> (const Fraction& param)
 {
-    if(numerator/denominator > param.numerator/param.denominator){cout << "The number is greater";}
-    else{cout << "The number is smaller";}
+    if(denominator == 0 || param.denominator == 0)
+    {
+        throw invalid_argument("denominator is 0");
+    }
+    if(numerator/denominator > param.numerator/param.denominator){cout << "The number is smaller";}
+    else{cout << "The number is greater";}
 }
 
 int main()
